@@ -39,3 +39,54 @@ pub struct SubAffixData {
     pub count: u8,
     pub step: u8,
 }
+
+pub trait AttributeLike {
+    fn field(&self) -> &String;
+    fn name(&self) -> &String;
+    fn icon(&self) -> &String;
+    fn value(&self) -> f64;
+    fn display(&self) -> &String;
+    fn is_percent(&self) -> bool;
+}
+
+impl AttributeLike for AttributeData {
+    fn field(&self) -> &String {
+        &self.field
+    }
+    fn name(&self) -> &String {
+        &self.name
+    }
+    fn icon(&self) -> &String {
+        &self.icon
+    }
+    fn value(&self) -> f64 {
+        self.value
+    }
+    fn display(&self) -> &String {
+        &self.display
+    }
+    fn is_percent(&self) -> bool {
+        self.is_percent
+    }
+}
+
+impl AttributeLike for PropertyData {
+    fn field(&self) -> &String {
+        &self.field
+    }
+    fn name(&self) -> &String {
+        &self.name
+    }
+    fn icon(&self) -> &String {
+        &self.icon
+    }
+    fn value(&self) -> f64 {
+        self.value
+    }
+    fn display(&self) -> &String {
+        &self.display
+    }
+    fn is_percent(&self) -> bool {
+        self.is_percent
+    }
+}

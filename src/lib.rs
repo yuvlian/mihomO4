@@ -1,38 +1,6 @@
 pub use reqwest::Client;
 use serde::Deserialize;
 use std::error::Error;
-use std::fmt;
-
-#[derive(Debug)]
-struct FetchError {
-    url: String,
-    status: reqwest::StatusCode,
-}
-
-impl fmt::Display for FetchError {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(
-            f,
-            "Failed to fetch URL: {}. Status: {}",
-            self.url, self.status
-        )
-    }
-}
-
-impl Error for FetchError {}
-
-async fn fetch_json(url: &str, client: &Client) -> Result<String, Box<dyn Error>> {
-    let response = client.get(url).send().await?;
-
-    if response.status().is_success() {
-        response.text().await.map_err(Into::into)
-    } else {
-        Err(Box::new(FetchError {
-            url: url.to_string(),
-            status: response.status(),
-        }))
-    }
-}
 
 pub enum Language {
     Cht,
@@ -72,9 +40,11 @@ impl Language {
 
 pub mod character;
 pub mod player;
+pub mod util;
 
 use character::CharacterData;
 use player::PlayerData;
+use util::fetch_json;
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Mihomo {

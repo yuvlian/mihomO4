@@ -6,7 +6,7 @@ mod equipment;
 mod skills;
 
 pub use ch_type::{ElementData, PathData};
-pub use eq_type::{AttributeData, MainAffixData, PropertyData, SubAffixData};
+pub use eq_type::{AttributeData, AttributeLike, MainAffixData, PropertyData, SubAffixData};
 pub use equipment::{LightConeData, RelicData, RelicSetData};
 pub use skills::{SkillData, SkillTreeData};
 
