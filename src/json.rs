@@ -99,6 +99,10 @@ impl Mihomo {
     pub fn get_character_by_id(&self, id: &str) -> Option<&CharacterData> {
         self.characters.iter().find(|c| c.id == id)
     }
+
+    pub fn get_character_by_name(&self, name: &str) -> Option<&CharacterData> {
+        self.characters.iter().find(|c| c.name.to_lowercase() == name.to_lowercase())
+    }
 }
 
 #[derive(Deserialize, Debug, Clone)]
